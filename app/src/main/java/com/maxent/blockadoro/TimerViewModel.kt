@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 
 class TimerViewModel: ViewModel() {
     var currentTimeLeft = 1500 // 25 minutes
+    var isTimerRunning = false
 
     private val timerHandler = Handler(Looper.getMainLooper())
 
@@ -26,10 +27,12 @@ class TimerViewModel: ViewModel() {
             timerLiveData.value = currentTimeLeft
         }
     }
-    fun pauseTime() {
-        timerHandler.removeCallbacks(updateTimerTask)
-    }
-    fun resumeTime() {
-        timerHandler.post(updateTimerTask)
+    fun toggleTimerState() {
+        isTimerRunning = !isTimerRunning
+        if (isTimerRunning) {
+            timerHandler.post(updateTimerTask)
+        } else {
+            timerHandler.removeCallbacks(updateTimerTask)
+        }
     }
 }

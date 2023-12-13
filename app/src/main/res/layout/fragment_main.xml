@@ -34,7 +34,7 @@
             android:gravity="center"
             android:textAllCaps="true"
             app:backgroundTint="@color/white"
-            app:icon="@drawable/ic_pause"
+            app:icon="@drawable/ic_skip"
             app:iconGravity="textStart"
             app:iconPadding="10dp"
             app:iconTint="@color/black"

@@ -16,7 +16,6 @@ class MainFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,7 +32,13 @@ class MainFragment : Fragment() {
 
         super.onViewCreated(view, savedInstanceState)
         binding.pauseButton.setOnClickListener {
-            timerViewModel.resumeTime()
+            timerViewModel.toggleTimerState()
+            val iconRes = if (timerViewModel.isTimerRunning) {
+                R.drawable.ic_pause
+            } else {
+                R.drawable.ic_skip
+            }
+            binding.pauseButton.setIconResource(iconRes)
         }
     }
 
