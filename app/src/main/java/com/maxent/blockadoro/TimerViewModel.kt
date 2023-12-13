@@ -6,8 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class TimerViewModel: ViewModel() {
-    var currentTimeLeft = 1500 // 25 minutes
+    var currentTimeLeft = 2 // 25 minutes in seconds
     var isTimerRunning = false
+    var currentPhase = "Deep Focus"
 
     private val timerHandler = Handler(Looper.getMainLooper())
 
@@ -20,11 +21,16 @@ class TimerViewModel: ViewModel() {
     val timerLiveData = MutableLiveData<Int>().apply {
         value = currentTimeLeft
     }
+    val phaseLiveData = MutableLiveData<String>().apply {
+        value = currentPhase
+    }
 
-    fun countDownSecond() {
+    private fun countDownSecond() {
         if (currentTimeLeft > 0) {
             currentTimeLeft--
             timerLiveData.value = currentTimeLeft
+        } else {
+            nextPhase()
         }
     }
     fun toggleTimerState() {
@@ -34,5 +40,10 @@ class TimerViewModel: ViewModel() {
         } else {
             timerHandler.removeCallbacks(updateTimerTask)
         }
+    }
+    fun nextPhase() {
+        phaseLiveData.value = "Short Break"
+        currentTimeLeft = 300 // 5 min in seconds
+        timerLiveData.value = currentTimeLeft
     }
 }

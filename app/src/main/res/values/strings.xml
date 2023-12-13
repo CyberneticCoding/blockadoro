@@ -2,7 +2,6 @@
     <string name="app_name">Blockadoro</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
@@ -44,4 +43,7 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="time">16:54</string>
+    <string name="phase_focus">Deep Focus</string>
+    <string name="phase_short_break">Short Break</string>
+    <string name="phase_long_break">Long Break</string>
 </resources>

@@ -27,10 +27,15 @@ class MainFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         timerViewModel = ViewModelProvider(requireActivity())[TimerViewModel::class.java]
 
-        super.onViewCreated(view, savedInstanceState)
+        // watch for phase change
+        timerViewModel.phaseLiveData.observe(viewLifecycleOwner) { newPhase ->
+            updateUIForPhase(newPhase)
+        }
+
         binding.pauseButton.setOnClickListener {
             timerViewModel.toggleTimerState()
             val iconRes = if (timerViewModel.isTimerRunning) {
@@ -45,5 +50,11 @@ class MainFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun updateUIForPhase(newPhase: String) {
+        // Update UI elements based on the new phase
+//        requireActivity().findViewById<View>(R.id.coordinatorLayout).setBackgroundColor(Color.RED)
+        binding.phaseView.text = newPhase
     }
 }
