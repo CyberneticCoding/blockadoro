@@ -16,9 +16,14 @@ class TimerService : Service() {
         const val NOTIFICATION_ID = 101
         const val CHANNEL_ID = "channelID"
     }
+    private lateinit var timerViewModel: TimerViewModel
 
     override fun onBind(intent: Intent?): IBinder? {
         TODO("Not yet implemented")
+    }
+    override fun onCreate() {
+        super.onCreate()
+        timerViewModel = TimerViewModel()
     }
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Log.i("starting", "Starting notification")
@@ -27,17 +32,11 @@ class TimerService : Service() {
         return START_STICKY // If the service is killed, it will be automatically restarted
     }
 
-    private fun formatTime(seconds: Int): String {
-        // Convert seconds to a formatted time string (e.g., "25:00")
-        val minutes = seconds / 60
-        val remainingSeconds = seconds % 60
-        return String.format(Locale.getDefault(), "%02d:%02d", minutes, remainingSeconds)
-    }
     private fun showNotification() {
 //        val notification = createNotification()
 //        startForeground(1, notification)
 
-        val notificationText = "20:00"
+        val notificationText = timerViewModel.formatTime(timerViewModel.currentTimeLeft)
 
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.mipmap.ic_launcher)
@@ -47,7 +46,7 @@ class TimerService : Service() {
             .setAutoCancel(true)
 
         val notificationManager = getSystemService(NotificationManager::class.java)
-        notificationManager.notify(NOTIFICATION_ID, builder.build())
+//        notificationManager.notify(NOTIFICATION_ID, builder.build()) //todo notification
     }
     private fun createNotificationChannel() {
         // Create a notification channel (required for API level 26 and above)
