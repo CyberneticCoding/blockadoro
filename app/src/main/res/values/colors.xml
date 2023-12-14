@@ -5,4 +5,8 @@
     <color name="bg_primary">#FF00092B</color>
     <color name="bg_grey">#FFDEE4E8</color>
     <color name="dark_grey">#FF6C6C6C</color>
+
+    <color name="deep_focus">#FF00092B</color>
+    <color name="short_break">#003C6A</color>
+    <color name="long_break">#4F0065</color>
 </resources>

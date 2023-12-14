@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import java.util.LinkedList
 
-data class Phase(val name: String, val durationInSeconds: Int, var workSessionsBeforeNextPhase: Int)
+data class Phase(val name: String, val durationInSeconds: Int, var workSessionsBeforeNextPhase: Int, val color: String)
 class TimerViewModel: ViewModel() {
     var isTimerRunning = false
 
@@ -20,9 +20,9 @@ class TimerViewModel: ViewModel() {
     }
 
     private fun initializePhases() {
-        val deepFocus = Phase("Deep Focus", 1, 0)
-        val shortBreak = Phase("Short Break", 1, 4)
-        val longBreak = Phase("Long Break", 2, 0)
+        val deepFocus = Phase("Deep Focus", 3, 0, "@color/deep")
+        val shortBreak = Phase("Short Break", 3, 4, "@color/short")
+        val longBreak = Phase("Long Break", 3, 0, "@color/long")
         phases = listOf(deepFocus, shortBreak, longBreak)
         currentPhaseIndex = 0
         currentTimeLeft = deepFocus.durationInSeconds
