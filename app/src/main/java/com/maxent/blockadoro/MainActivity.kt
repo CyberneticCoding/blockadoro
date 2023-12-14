@@ -34,15 +34,8 @@ class MainActivity : AppCompatActivity() {
         timerViewModel = ViewModelProvider(this)[TimerViewModel::class.java]
 
         timerViewModel.timerLiveData.observe(this) { currentTime ->
-            findViewById<TextView>(R.id.timer_view).text = formatTime(currentTime)
+            findViewById<TextView>(R.id.timer_view).text = timerViewModel.formatTime(currentTime)
         }
-    }
-
-    private fun formatTime(seconds: Int): String {
-        // Convert seconds to a formatted time string (e.g., "25:00")
-        val minutes = seconds / 60
-        val remainingSeconds = seconds % 60
-        return String.format(Locale.getDefault(), "%02d:%02d", minutes, remainingSeconds)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

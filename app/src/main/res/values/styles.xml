@@ -12,7 +12,7 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/orbitron</item>
     </style>
-    <style name="pause_button">
+    <style name="toggle_button">
         <item name="android:background">@color/white</item>
         <item name="android:drawableTop">@drawable/ic_play</item>
         <item name="android:gravity">center</item>

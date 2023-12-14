@@ -2,8 +2,7 @@ package com.maxent.blockadoro
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
-import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.TransitionDrawable
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -44,18 +43,21 @@ class MainFragment : Fragment() {
             updateUIForPhase(newPhase)
         }
 
-        binding.pauseButton.setOnClickListener {
+        binding.toggleButton.setOnClickListener {
             timer.toggleTimerState()
             val iconRes = if (timer.isTimerRunning) {
                 R.drawable.ic_pause
             } else {
                 R.drawable.ic_play
             }
-            binding.pauseButton.setIconResource(iconRes)
+            binding.toggleButton.setIconResource(iconRes)
+
+            // Start the notification for timer
+            val serviceIntent = Intent(requireContext(), TimerService::class.java)
+            requireContext().startService(serviceIntent)
         }
 
         binding.skipButton.setOnClickListener {
-
             timer.nextPhase()
         }
     }

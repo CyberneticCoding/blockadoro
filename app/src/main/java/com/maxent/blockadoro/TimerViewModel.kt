@@ -1,11 +1,13 @@
 package com.maxent.blockadoro
 
+import android.content.Intent
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import java.util.LinkedList
+import java.util.Locale
 
 data class Phase(val name: String, val durationInSeconds: Int, var workSessionsBeforeNextPhase: Int, val color: String)
 class TimerViewModel: ViewModel() {
@@ -80,5 +82,12 @@ class TimerViewModel: ViewModel() {
         } else {
             timerHandler.removeCallbacks(updateTimerTask)
         }
+    }
+
+    fun formatTime(seconds: Int): String {
+        // Convert seconds to a formatted time string (e.g., "25:00")
+        val minutes = seconds / 60
+        val remainingSeconds = seconds % 60
+        return String.format(Locale.getDefault(), "%02d:%02d", minutes, remainingSeconds)
     }
 }
