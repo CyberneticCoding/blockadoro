@@ -30,4 +30,11 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/orbitron</item>
     </style>
+    <style name="phase_view_small">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/dark_grey</item>
+        <item name="android:fontFamily">@font/orbitron</item>
+    </style>
 </resources>

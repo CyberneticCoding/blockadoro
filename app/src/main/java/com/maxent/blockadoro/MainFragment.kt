@@ -11,7 +11,7 @@ import com.maxent.blockadoro.databinding.FragmentMainBinding
 class MainFragment : Fragment() {
 
     private var _binding: FragmentMainBinding? = null
-    private lateinit var timerViewModel: TimerViewModel
+    private lateinit var timer: TimerViewModel
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -29,16 +29,15 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        timerViewModel = ViewModelProvider(requireActivity())[TimerViewModel::class.java]
-
+        timer = ViewModelProvider(requireActivity())[TimerViewModel::class.java]
         // watch for phase change
-        timerViewModel.phaseLiveData.observe(viewLifecycleOwner) { newPhase ->
+        timer.phaseLiveData.observe(viewLifecycleOwner) { newPhase ->
             updateUIForPhase(newPhase)
         }
 
         binding.pauseButton.setOnClickListener {
-            timerViewModel.toggleTimerState()
-            val iconRes = if (timerViewModel.isTimerRunning) {
+            timer.toggleTimerState()
+            val iconRes = if (timer.isTimerRunning) {
                 R.drawable.ic_pause
             } else {
                 R.drawable.ic_skip
@@ -53,8 +52,12 @@ class MainFragment : Fragment() {
     }
 
     private fun updateUIForPhase(newPhase: String) {
-        // Update UI elements based on the new phase
-//        requireActivity().findViewById<View>(R.id.coordinatorLayout).setBackgroundColor(Color.RED)
         binding.phaseView.text = newPhase
+        if (timer.currentPhaseIndex >= 0 && timer.currentPhaseIndex < timer.phaseQueue.size) {
+            binding.phaseViewSmall.text  = timer.phaseQueue[timer.currentPhaseIndex].name
+        } else {
+            binding.phaseViewSmall.text  = "Deep Work"
+
+        }
     }
 }
