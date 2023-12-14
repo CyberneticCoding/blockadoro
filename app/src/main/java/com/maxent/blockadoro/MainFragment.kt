@@ -67,7 +67,7 @@ class MainFragment : Fragment() {
         if (timer.currentPhaseIndex >= 0 && timer.currentPhaseIndex < timer.phaseQueue.size) {
             binding.phaseViewSmall.text  = timer.phaseQueue[timer.currentPhaseIndex].name
         } else {
-            binding.phaseViewSmall.text  = "Deep Work"
+            binding.phaseViewSmall.text  = "Short Break"
         }
         changeBackgroundColor(newPhase)
     }
