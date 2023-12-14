@@ -57,14 +57,29 @@
             android:gravity="center"
             android:textAllCaps="true"
             app:backgroundTint="@color/white"
+            app:icon="@drawable/ic_play"
+            app:iconGravity="textStart"
+            app:iconTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/skip_button"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Pause" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/skip_button"
+            style="@style/skip_button"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:textAllCaps="true"
+            app:backgroundTint="@color/white"
             app:icon="@drawable/ic_skip"
             app:iconGravity="textStart"
-            app:iconPadding="10dp"
             app:iconTint="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="Pause" />
+            tools:text="Skip" />
 
 <!--            android:layout_width="wrap_content"-->
 <!--            android:layout_height="wrap_content"-->

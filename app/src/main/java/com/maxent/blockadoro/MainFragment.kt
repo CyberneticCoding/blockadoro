@@ -49,9 +49,14 @@ class MainFragment : Fragment() {
             val iconRes = if (timer.isTimerRunning) {
                 R.drawable.ic_pause
             } else {
-                R.drawable.ic_skip
+                R.drawable.ic_play
             }
             binding.pauseButton.setIconResource(iconRes)
+        }
+
+        binding.skipButton.setOnClickListener {
+
+            timer.nextPhase()
         }
     }
 

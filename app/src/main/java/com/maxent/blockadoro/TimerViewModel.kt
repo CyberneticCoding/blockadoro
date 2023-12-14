@@ -20,9 +20,9 @@ class TimerViewModel: ViewModel() {
     }
 
     private fun initializePhases() {
-        val deepFocus = Phase("Deep Focus", 1, 0, "@color/deep")
-        val shortBreak = Phase("Short Break", 1, 3, "@color/short")
-        val longBreak = Phase("Long Break", 2, 0, "@color/long")
+        val deepFocus = Phase("Deep Focus", 1500, 0, "@color/deep")
+        val shortBreak = Phase("Short Break", 300, 3, "@color/short")
+        val longBreak = Phase("Long Break", 900, 0, "@color/long")
         phases = listOf(deepFocus, shortBreak, longBreak)
         currentPhaseIndex = 0
         currentTimeLeft = deepFocus.durationInSeconds
